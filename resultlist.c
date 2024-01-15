@@ -5,52 +5,46 @@
 
 #include "resultlist.h"
 
-list_t* gp_list_head = NULL;
-list_t* gp_list_current = NULL;
+list_t * gp_list_head = NULL;
+list_t * gp_list_current = NULL;
 
-list_t* get_list(void)
+list_t * get_list(void)
 {
 	return gp_list_head;
 }
 
-void add_result(result_t* result)
+void add_result (result_t * result)
 {
-	if (NULL == gp_list_head)
-	{
-		list_t* new_list = (list_t*)malloc(sizeof(list_t));
+	if (NULL == gp_list_head) {
+
+		list_t * new_list = (list_t * ) malloc (sizeof(list_t));
 		assert( NULL != new_list && "Not enough space");
 		new_list->result = result;
 		new_list->next = NULL;
 		gp_list_head = new_list;
 		gp_list_current = new_list;
-	}
-	else
-	{
-		gp_list_current->next =  malloc(sizeof(list_t));
-		assert( NULL != gp_list_current->next && "Not enough space");
-		gp_list_current = (list_t*)gp_list_current->next;
+	
+	} else {
+		gp_list_current->next =  malloc (sizeof(list_t));
+		assert (NULL != gp_list_current->next && "Not enough space");
+		gp_list_current = (list_t * ) gp_list_current->next;
 		gp_list_current->result = result;
 		gp_list_current->next = NULL;
 	}
 }
 
-result_t* find_result(int index)
+result_t * find_result(int index)
 {
-	list_t* temp = gp_list_head;
+	list_t * temp = gp_list_head;
 
-	if (NULL == temp)
-	{
+	if (NULL == temp) {
 		return NULL;
 	}
 	
-	while(temp != NULL)
-	{
-		if (temp->result->index == index)
-		{
+	while (temp != NULL) {
+		if (temp->result->index == index) {
 			return temp->result;
-		}
-		else
-		{
+		} else {
 			temp = temp->next;
 		}
 	}
@@ -60,15 +54,12 @@ result_t* find_result(int index)
 
 void print_results(void)
 {
-	list_t* temp = gp_list_head;
+	list_t * temp = gp_list_head;
 
-	if (NULL == temp)
-	{
-		return;
-	}
+	if (NULL == temp) return;
 	
-	while(temp != NULL)
-	{
+	
+	while(temp != NULL) {
 		temp = temp->next;
 	}
 }
@@ -76,23 +67,22 @@ void print_results(void)
 void free_resources(void)
 {
 
-	list_t* temp = gp_list_head;
+	list_t * temp = gp_list_head;
 
-	if (NULL == temp)
-	{
-		return;
-	}
+	if (NULL == temp) return;
 	
-	while(temp != NULL)
-	{
-		free(temp->result->string);
+	while (temp != NULL) {
+
+		free (temp->result->string);
 		temp->result->string = NULL;
-		free(temp->result->location);
+		free (temp->result->location);
 		temp->result->location = NULL;
 		temp = gp_list_head->next;
-		free(gp_list_head);
-		gp_list_head = temp;
+		free (gp_list_head);
+		if (temp != NULL) gp_list_head = temp;
+
 	}
+
 	gp_list_head = NULL;
 	gp_list_current = NULL;
 }

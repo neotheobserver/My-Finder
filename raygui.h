@@ -3197,7 +3197,7 @@ int GuiDummyRec(Rectangle bounds, const char *text)
 }
 
 // List View control with extended parameters
-int GuiListViewCustom(Rectangle bounds, int count, int *scrollIndex, int *active, int *focus)
+int GuiListViewCustom (Rectangle bounds, int count, int * scrollIndex, int * active, int * focus)
 {
     int result = 0;
     GuiState state = guiState;

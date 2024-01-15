@@ -1,5 +1,5 @@
-#ifndef __MF_H__
-#define __MF_H__
+#ifndef MF_H__
+#define MF_H__
 
 #define WINDOWS_MAX_PATH_CHARACTERS		256*2 //256 is max but could have more?
 #define SCREEN_WIDTH	1100
@@ -23,11 +23,11 @@ typedef enum app_state
 typedef struct
 {
 	bool is_file_finder;
-	bool should_exit;
-	app_state_t app_state;
+	_Atomic bool should_exit;
+	_Atomic app_state_t app_state;
 	char cwd[WINDOWS_MAX_PATH_CHARACTERS];
 	int current_index;
 	int total_count;
-}mf_state_t;
+} mf_state_t;
 
 #endif
