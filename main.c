@@ -24,8 +24,8 @@ char search_text[64] = "MF...";
 int flag_selected = 0;
 
 static void handle_input(void);
-static void * LoadDataThread(void *arg);
-static char * get_location(char *string);
+static void * LoadDataThread(void * arg);
+static char * get_location(char * string);
 
 int main (void)
 {
@@ -77,10 +77,9 @@ int main (void)
 		
 		}
 	}
-	
+	UnloadMusicStream (music);
 	CloseWindow();
 	free_resources(); //free all allocated memory
-	
 	return 0;
 }
 

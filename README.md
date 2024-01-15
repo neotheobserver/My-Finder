@@ -1,4 +1,4 @@
-# My Finder 0.1
+# My Finder 0.2
 
 A GUI tool to search texts/files in the directory you open it from and all its sub directories recursively for windows. I started this
 project as I was having trouble looking for certain things in esp32 examples/components directories while working with coded phy ble.
